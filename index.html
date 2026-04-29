@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="CoINS: Counterfactual Interactive Navigation via Skill-Aware VLM">
+        content="CoIN: Interactive Navigation with Counterfactual Reasoning via Vision-Language Models">
   <meta name="keywords" content="CoINS, interactive navigation, VLM">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CoINS: Counterfactual Interactive Navigation via Skill-Aware VLM</title>
+  <title>CoIN: Interactive Navigation with Counterfactual Reasoning via Vision-Language Models</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -56,7 +56,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">CoINS: Counterfactual Interactive Navigation via Skill-Aware VLM</h1>
+          <h1 class="title is-1 publication-title">CoIN: Interactive Navigation with Counterfactual Reasoning via Vision-Language Models</h1>
           <p class="is-size-5 has-text-grey">Anonymous author</p>
 
           <div class="column has-text-centered">
@@ -136,7 +136,15 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Recent vision-language models (VLMs) have demonstrated significant potential in robotic planning. However, they typically function as semantic reasoners, lacking an intrinsic understanding of the specific robot’s physical capabilities. This limitation is particularly critical in interactive navigation, where robots must actively modify cluttered environments to create traversable paths. Existing VLM-based navigators are predominantly confined to passive obstacle avoidance, failing to reason about when and how to interact with objects to clear blocked paths. To bridge this gap, we propose Counterfactual Interactive Navigation with Skill-aware VLM (CoINS), a hierarchical framework that integrates skill-aware reasoning and robust low-level execution. Specifically, we fine-tune a VLM, named InterNav-VLM, which incorporates skill affordance and concrete constraint parameters into the input context and grounds them into a metric-scale environmental representation. By internalizing the logic of counterfactual reasoning through fine-tuning on the proposed InterNav dataset, the model learns to implicitly evaluate the causal effects of object removal on navigation connectivity, thereby determining interaction necessity and target selection. To execute the generated high-level plans, we develop a comprehensive skill library through reinforcement learning, introducing traversability-oriented strategies to manipulate diverse objects for path clearance. A systematic benchmark in Isaac Sim is proposed to evaluate both the reasoning and execution aspects of interactive navigation. Extensive simulations and real-world experiments demonstrate that CoINS outperforms existing baselines, surpassing the success rate by 17% overall and over 80% in complex long-horizon scenarios, while exhibiting robust generalization across diverse object categories and robot embodiments.
+            Interactive navigation requires robots to actively modify cluttered environments to create traversable paths, going beyond passive obstacle avoidance.
+            However, existing methods either depend on global maps and lack the reasoning capabilities to make interaction decisions from local observations, or are restricted to interactions with simple geometric objects, limiting their applicability in partially observable, unstructured environments.
+            To address these challenges, we propose counterfactual interactive navigation, named CoIN, a vision-language model (VLM)-based hierarchical framework that integrates high-level interaction reasoning with low-level loco-manipulation policies for diverse objects.
+            Specifically, we propose CoIN-VLM, a VLM that internalizes counterfactual reasoning to evaluate the effect of object removal on goal reachability, thereby deciding when interaction is necessary and which object to interact with. 
+            % This capability is distilled into the model via fine-tuning on the proposed InterNav dataset.
+            To further align such reasoning with the robot's physical capabilities, we inject robot skill descriptions into the VLM context and ground them into a metric-scale environmental representation, ensuring that the generated plans remain physically feasible.
+            To execute the generated high-level plans, we develop a comprehensive skill library through reinforcement learning, specifically introducing traversability-oriented strategies to manipulate diverse objects for path clearance.
+            Furthermore, a systematic benchmark in Isaac Sim is proposed to evaluate both the reasoning and execution aspects of interactive navigation.
+            Extensive simulations and real-world experiments demonstrate that CoIN significantly outperforms representative baselines, achieving a 17\% higher overall success rate and over 80\% improvement in complex long-horizon scenarios compared to the best-performing baseline, while exhibiting robust generalization across diverse object categories.
           </p>
         </div>
       </div>
@@ -153,7 +161,7 @@
           <img src="./static/images/cover_pic.png" alt="CoINS overview with navigation, skill-aware reasoning, and benchmark illustration">
         </figure>
         <p class="content has-text-justified" style="margin-top: 1rem;">
-          We introduce CoINS, a hierarchical interactive navigation framework that integrates skill-aware VLM reasoning with an RL-based skill library for diverse behaviors. Unlike traditional methods that rely on passive avoidance, CoINS enables the robot to actively modify the environment to clear paths in cluttered scenarios.
+          We introduce CoIN, a hierarchical interactive navigation framework that integrates counterfactual interaction reasoning via VLM and an RL-based skill library of diverse behaviors. Unlike traditional navigation methods that rely on passive obstacle avoidance, CoIN enables the robot to actively reconfigure the environment to clear paths in cluttered scenarios.
         </p>
       </div>
     </div>
@@ -169,7 +177,7 @@
           <img src="./static/images/framework.png" alt="CoINS Framework">
         </figure>
         <p class="content has-text-justified" style="margin-top: 1rem;">
-          The CoINS framework. The VLM reasoning module takes the robot's egocentric RGB observations and embodiment constraints as input to produce high-level interaction and navigation decisions, which are then translated by the skill execution module into precise motion controls for diverse interaction primitives.
+          The CoIN framework. The CoIN-VLM reasoning module takes the robot's egocentric RGB observations and robot skills as input to produce high-level interaction and navigation decisions, which are then translated by the skill library into precise motion controls for diverse interaction primitives.
         </p>
       </div>
     </div>
